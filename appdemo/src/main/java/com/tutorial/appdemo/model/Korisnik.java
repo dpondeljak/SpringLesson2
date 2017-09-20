@@ -1,37 +1,22 @@
 package com.tutorial.appdemo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.sql.Date;
+import java.sql.Timestamp;
 
-@Entity
-@Table(name = "korisnici")
 public class Korisnik {
 
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@Column(name = "username")
 	private String korisnickoIme;
 
-	@Column(name = "password")
 	private String lozinka;
 
-	@Column(name = "datum_unosa")
 	private String datumUnosa;
 
-	@Column(name = "datum_promjene")
 	private String datumPromjene;
 
-	@Column(name = "status")
 	private int status;
 
-	@Column(name = "ip_addresa")
 	private String ipAdresa;
 
 	public Korisnik() {

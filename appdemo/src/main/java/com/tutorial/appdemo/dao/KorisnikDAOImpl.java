@@ -6,13 +6,20 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 
 import com.tutorial.appdemo.model.Korisnik;
 
+@Repository("korisnikDAO")
 public class KorisnikDAOImpl implements KorisnikDAO {
 
+	@Autowired
+	@Qualifier("wasDataSource")
 	private DataSource dbDataSource;
 
 	public KorisnikDAOImpl(DataSource dataSource) {
@@ -33,8 +40,9 @@ public class KorisnikDAOImpl implements KorisnikDAO {
 				Korisnik tKorisnik = new Korisnik();
 				tKorisnik.setId(rs.getInt("id"));
 				tKorisnik.setKorisnickoIme(rs.getString("username"));
-				tKorisnik.setLozinka(rs.getString("lozinka"));
+				tKorisnik.setLozinka(rs.getString("password"));
 				tKorisnik.setDatumUnosa(rs.getString("datum_unosa"));
+				tKorisnik.setDatumPromjene(rs.getString("datum_promjene"));
 				tKorisnik.setStatus(rs.getInt("status"));
 				return tKorisnik;
 			}

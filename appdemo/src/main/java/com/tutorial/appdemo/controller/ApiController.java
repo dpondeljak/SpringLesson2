@@ -1,12 +1,18 @@
 package com.tutorial.appdemo.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tutorial.appdemo.model.Korisnik;
+import com.tutorial.appdemo.service.KorisnikService;
 
 /**
  * <h1>API za mobilni dio</h1>
@@ -36,7 +42,7 @@ import com.tutorial.appdemo.model.Korisnik;
  * Error Poruka
  * 
  * { "success": false, "error": {"code": 401, "message":
- * "Greška kod prijave. Provjerite svoje korisnicke podatke" } , "code": 401 }
+ * "Greï¿½ka kod prijave. Provjerite svoje korisnicke podatke" } , "code": 401 }
  * 
  */
 
@@ -44,12 +50,20 @@ import com.tutorial.appdemo.model.Korisnik;
 @RequestMapping("/api")
 public class ApiController {
 
+	@Autowired
+	@Qualifier("korisnikServis")
+	private KorisnikService iKorisnikServis;
+
+	public void setiKorisnikServis(KorisnikService pKorisnikServis) {
+		this.iKorisnikServis = pKorisnikServis;
+	}
+
 	@RequestMapping(value = { "/",
 			"/prijava" }, method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	public String home() {
 		// TODO - defaultna strana/poruka za api
 		/*
-		 * npr: { "success": false, "error": {"code": 404, "message": "Greška." } ,
+		 * npr: { "success": false, "error": {"code": 404, "message": "Greï¿½ka." } ,
 		 * "code": 404 }
 		 */
 
@@ -68,10 +82,15 @@ public class ApiController {
 	/**
 	 * Lista korisnika - GET metoda
 	 * 
+	 * @return
+	 * 
 	 */
 	@RequestMapping(value = "/korisnici", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
-	public void listaKorisnika() {
+	@ResponseBody
+	public List<Korisnik> listaKorisnika() {
 		// TODO - lista korisnika
+		return iKorisnikServis.getSveKorisnike();
+
 	}
 
 	/**
@@ -116,12 +135,12 @@ public class ApiController {
 	}
 
 	/**
-	 * Generièka poruka o grešci
+	 * Generiï¿½ka poruka o greï¿½ci
 	 * 
-	 * @return String - Greška i kod
+	 * @return String - Greï¿½ka i kod
 	 */
 	private String errorResponse() {
-		String tGreska = "{ \"success\": false, \"error\": {\"code\": 404, \"message\": \"Greška.\" },  \"code\": 404 }";
+		String tGreska = "{ \"success\": false, \"error\": {\"code\": 404, \"message\": \"Greï¿½ka.\" },  \"code\": 404 }";
 
 		return tGreska;
 	}

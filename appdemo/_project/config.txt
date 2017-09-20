@@ -1,0 +1,7 @@
+1) prvo na wasi podesit referencu ( Local reference u web.xml)
+2) podesiti jndi prema webspheru dev. tutu
+3) podesiti spring-context, i database-context prema gore navedenom 
+4) u pomidoru dodat depadansu za miška
+
+
+miško je sudoper na serveru 
