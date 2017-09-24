@@ -34,10 +34,10 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<!-- jndi DataSource -->
-	<jee:jndi-lookup id="wasDataSource" jndi-name="jdbc/mySQL"
-		cache="true" resource-ref="true" lookup-on-startup="false"
-		proxy-interface="javax.sql.DataSource" />
+	<!-- jndi DataSource --> 
+<!-- 	<jee:jndi-lookup id="wasDataSource" jndi-name="jdbc/mySQL" -->
+<!-- 		cache="true" resource-ref="true" lookup-on-startup="false" -->
+<!-- 		proxy-interface="javax.sql.DataSource" /> -->
 
 	<!-- Pozivanje setupa za databazu -->
 	<!-- NAPOMENA: vidi zaglavlje file-a za detalje razloga pozivanja beans:import 

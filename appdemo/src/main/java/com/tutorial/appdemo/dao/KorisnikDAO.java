@@ -27,4 +27,36 @@ public interface KorisnikDAO {
 	 */
 	public void spremiKorisnika(Korisnik pKorisnik);
 
+	/**
+	 * Dohvat Korisnika po ID-u
+	 * 
+	 * @param pId
+	 * @return Korisnik
+	 */
+	public Korisnik getKorisnikById(String pId);
+
+	/**
+	 * Dohvat Korisnika po korisnickom imenu
+	 * 
+	 * @param pKorisnickoIme
+	 * @return Korisnik
+	 */
+	public Korisnik getKorisnikByUsername(String pKorisnickoIme);
+
+	/**
+	 * Ureðivanje korisnika po id-u
+	 * 
+	 * @param pKorisnik
+	 * @param pId
+	 * @return Korisnik
+	 */
+	public Korisnik updateKorisnik(Korisnik pKorisnik, String pId);
+
+	/**
+	 * Brisanje korisnika
+	 * 
+	 * @param pId
+	 */
+	public void brisiKorisnika(String pId);
+
 }
