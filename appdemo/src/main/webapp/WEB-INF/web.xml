@@ -34,12 +34,12 @@
 	<display-name>App Demo</display-name>
 	
 	<!-- Resource reference potreban za BAZU preko jndi -->
-	<resource-ref>
-		<description>MySql baza as resource reference</description>
-		<res-ref-name>jdbc/mySQL</res-ref-name>
-		<res-type>javax.sql.DataSource</res-type>
-		<res-auth>Container</res-auth>
-		<res-sharing-scope>Shareable</res-sharing-scope>
-	</resource-ref>
+<!-- 	<resource-ref> -->
+<!-- 		<description>MySql baza as resource reference</description> -->
+<!-- 		<res-ref-name>jdbc/mySQL</res-ref-name> -->
+<!-- 		<res-type>javax.sql.DataSource</res-type> -->
+<!-- 		<res-auth>Container</res-auth> -->
+<!-- 		<res-sharing-scope>Shareable</res-sharing-scope> -->
+<!-- 	</resource-ref> -->
 	
 </web-app>

@@ -1,11 +1,12 @@
 package com.tutorial.appdemo.model;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
 public class Korisnik {
 
 	private int id;
+
+	private String ime;
+
+	private String prezime;
 
 	private String korisnickoIme;
 
@@ -34,6 +35,22 @@ public class Korisnik {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getIme() {
+		return ime;
+	}
+
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
+
+	public String getPrezime() {
+		return prezime;
+	}
+
+	public void setPrezime(String prezime) {
+		this.prezime = prezime;
 	}
 
 	public String getKorisnickoIme() {
@@ -101,8 +118,9 @@ public class Korisnik {
 
 	@Override
 	public String toString() {
-		return "Korisnik [id=" + id + ", korisnickoIme=" + korisnickoIme + ", lozinka= " + lozinka + ", datumUnosa="
-				+ datumUnosa + ", datumPromjene=" + datumPromjene + ", status=" + status + "]";
+		return "Korisnik [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", korisnickoIme=" + korisnickoIme
+				+ ", lozinka=" + lozinka + ", datumUnosa=" + datumUnosa + ", datumPromjene=" + datumPromjene
+				+ ", status=" + status + ", ipAdresa=" + ipAdresa + "]";
 	}
 
 }

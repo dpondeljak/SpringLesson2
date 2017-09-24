@@ -7,6 +7,13 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/mySQL"
+		resource-ref="true" />
+
+	<bean id="tJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
 
 	<!-- Alternativni način pozivanja JNDI resursa u spring kroz bean -->
 	<!-- <bean id="wasDataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
@@ -14,10 +21,10 @@
 		value="false" /> <property name="cache" value="true" /> <property name="proxyInterface" 
 		value="javax.sql.DataSource" /> </bean> -->
 
-	<bean id="korisnikDao" class="com.tutorial.appdemo.dao.KorisnikDAOImpl">
-		<constructor-arg>
-			<ref bean="wasDataSource" />
-		</constructor-arg>
-	</bean>
+	<!-- Mapiranje DAO-a beanova -->
+	<bean id="korisnikDao" class="com.tutorial.appdemo.dao.KorisnikDAOImpl"></bean>
+
+	<!-- Mapiranje Servisa -->
+	<bean id="korisnikServis" class="com.tutorial.appdemo.service.KorisnikServiceImpl"></bean>
 
 </beans>
