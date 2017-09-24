@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jee="http://www.springframework.org/schema/jee"
 	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<!-- bean id="dbDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="java:comp/env/jdbc/appDemoDb" />
-		
-	</bean -->
+	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/mySQL"
+		resource-ref="true" />
 
-	<bean id="korisnikDao" class="com.tutorial.appdemo.dao.KorisnikDAOImpl">
-		<constructor-arg>
-			<ref bean="dbDataSource" />
-		</constructor-arg>
+	<bean id="tJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
 	</bean>
+
+
+	<!-- Alternativni način pozivanja JNDI resursa u spring kroz bean -->
+	<!-- <bean id="wasDataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+		<property name="jndiName" value="java:comp/env/jdbc/mySQL" /> <property name="lookupOnStartup" 
+		value="false" /> <property name="cache" value="true" /> <property name="proxyInterface" 
+		value="javax.sql.DataSource" /> </bean> -->
+
+	<!-- Mapiranje DAO-a beanova -->
+	<bean id="korisnikDao" class="com.tutorial.appdemo.dao.KorisnikDAOImpl"></bean>
+
+	<!-- Mapiranje Servisa -->
+	<bean id="korisnikServis" class="com.tutorial.appdemo.service.KorisnikServiceImpl"></bean>
 
 </beans>

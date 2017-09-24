@@ -1,37 +1,23 @@
 package com.tutorial.appdemo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "korisnici")
 public class Korisnik {
 
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	@Column(name = "username")
+	private String ime;
+
+	private String prezime;
+
 	private String korisnickoIme;
 
-	@Column(name = "password")
 	private String lozinka;
 
-	@Column(name = "datum_unosa")
 	private String datumUnosa;
 
-	@Column(name = "datum_promjene")
 	private String datumPromjene;
 
-	@Column(name = "status")
 	private int status;
 
-	@Column(name = "ip_addresa")
 	private String ipAdresa;
 
 	public Korisnik() {
@@ -49,6 +35,22 @@ public class Korisnik {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getIme() {
+		return ime;
+	}
+
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
+
+	public String getPrezime() {
+		return prezime;
+	}
+
+	public void setPrezime(String prezime) {
+		this.prezime = prezime;
 	}
 
 	public String getKorisnickoIme() {
@@ -116,8 +118,9 @@ public class Korisnik {
 
 	@Override
 	public String toString() {
-		return "Korisnik [id=" + id + ", korisnickoIme=" + korisnickoIme + ", lozinka= " + lozinka + ", datumUnosa="
-				+ datumUnosa + ", datumPromjene=" + datumPromjene + ", status=" + status + "]";
+		return "Korisnik [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", korisnickoIme=" + korisnickoIme
+				+ ", lozinka=" + lozinka + ", datumUnosa=" + datumUnosa + ", datumPromjene=" + datumPromjene
+				+ ", status=" + status + ", ipAdresa=" + ipAdresa + "]";
 	}
 
 }

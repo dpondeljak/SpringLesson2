@@ -2,11 +2,9 @@
 <!-- Ako je prvi xmls jednak mvc shemi onda je beanove potrebno pozivati 
 	sa beans:bean -->
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:jee="http://www.springframework.org/schema/jee"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
@@ -18,8 +16,8 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 
-	<context:annotation-config/>
-	
+	<context:annotation-config />
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
@@ -35,15 +33,18 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
-	<!-- jndi DataSource -->
-	<jee:jndi-lookup id="dbDataSource" jndi-name="jdbc/appDemoDb" expected-type="javax.sql.DataSource" />
-	
+
+	<!-- jndi DataSource --> 
+<!-- 	<jee:jndi-lookup id="wasDataSource" jndi-name="jdbc/mySQL" -->
+<!-- 		cache="true" resource-ref="true" lookup-on-startup="false" -->
+<!-- 		proxy-interface="javax.sql.DataSource" /> -->
+
 	<!-- Pozivanje setupa za databazu -->
-	<!-- NAPOMENA: vidi zaglavlje file-a za detalje razloga pozivanja beans:import resource="" -->
+	<!-- NAPOMENA: vidi zaglavlje file-a za detalje razloga pozivanja beans:import 
+		resource="" -->
 	<beans:import resource="database-context.xml" />
-	
- 
+
+
 	<context:component-scan base-package="com.tutorial.appdemo" />
 
 </beans:beans>

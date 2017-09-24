@@ -208,3 +208,7 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+td>span {
+	text-align:center;
+} 
