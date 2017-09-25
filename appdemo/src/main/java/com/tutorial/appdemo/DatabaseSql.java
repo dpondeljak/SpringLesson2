@@ -28,8 +28,15 @@ public class DatabaseSql {
 	/**
 	 * Tabela Porta
 	 */
-	// Dohvati portira po korisnickom imenu
-	public static String SQL_FIND_PORTIR_BY_USERNAME = "SELECT * FROM porta WHERE korisnicko_ime = ?";
+	// Dohvati sve portire
+	public static String SQL_GET_ALL_PORTIRE = "SELECT * FROM porta";
+	// Dohvati portira po korisnickom imenu i statusu
+	public static String SQL_FIND_PORTIR_BY_USERNAME = "SELECT * FROM porta WHERE korisnicko_ime = ? AND status = 1";
+	// dohvati po id-u
 	public static String SQL_FIND_PORTIR_BY_ID = "SELECT * FROM porta WHERE id = ?";
+	// update lozinke za portira id
+	public static String SQL_UPDATE_PORTIR_PASSWORD = "UPDATE porta SET lozinka = ? WHERE id = ?";
+	// update kompletnog portira po ID-u
+	public static String SQL_UPDATE_PORTIR = "UPDATE porta SET korisnicko_ime = ?, lozinka = ?, zakljucan = ?, prijavljen=?, zadnji_pristup=NOW(), token= ?, status = ? WHERE id = ?";
 
 }

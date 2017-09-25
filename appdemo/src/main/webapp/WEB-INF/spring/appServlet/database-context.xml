@@ -23,8 +23,10 @@
 
 	<!-- Mapiranje DAO-a beanova -->
 	<bean id="korisnikDao" class="com.tutorial.appdemo.dao.KorisnikDAOImpl"></bean>
+	<bean id="portirDao" class="com.tutorial.appdemo.dao.PortirDAOImpl"></bean>
 
 	<!-- Mapiranje Servisa -->
 	<bean id="korisnikServis" class="com.tutorial.appdemo.service.KorisnikServiceImpl"></bean>
+<!-- 	<bean id="portirServis" class="com.tutorial.appdemo.service.PortirServiceImpl"></bean> -->
 
 </beans>

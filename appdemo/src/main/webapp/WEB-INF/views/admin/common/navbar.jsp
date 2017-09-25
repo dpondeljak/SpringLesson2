@@ -13,9 +13,16 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="./admin">Dashboard</a></li>
             <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile<span class="caret"></span></a>
+            	<ul class="dropdown-menu">
+            		<li><a href="#" data-toggle="modal" data-target="#editProfileModal">Edit Profile</a></li>
+            		<li><a href="#" data-toggle="modal" data-target="#changePasswordModal">Change Password</a></li>
+            		<li><a href="./logout" >Logout</a></li>
+            	</ul>
+            
+            </li>
             <li><a href="#">Help</a></li>
           </ul>
           <form class="navbar-form navbar-right">

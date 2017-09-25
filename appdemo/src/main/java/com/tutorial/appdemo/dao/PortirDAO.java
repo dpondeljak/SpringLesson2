@@ -1,5 +1,7 @@
 package com.tutorial.appdemo.dao;
 
+import java.util.List;
+
 import com.tutorial.appdemo.model.Portir;
 
 public interface PortirDAO {
@@ -22,5 +24,16 @@ public interface PortirDAO {
 	 * @return String
 	 */
 	public String generirajToken(String pId);
+
+	public List<Portir> getSvePortire();
+
+	/**
+	 * Mehanizam za provjeru korisnika sa moguconoscu azuriranja lozinke korisnika
+	 * 
+	 * @param pKorisnickoIme
+	 * @param pLozinka
+	 * @return boolean
+	 */
+	public boolean prijaviSe(String pKorisnickoIme, String pLozinka);
 
 }

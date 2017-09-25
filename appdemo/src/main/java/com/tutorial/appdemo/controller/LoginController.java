@@ -2,9 +2,11 @@ package com.tutorial.appdemo.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,11 +14,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tutorial.appdemo.AppConstants;
 import com.tutorial.appdemo.model.Korisnik;
-import com.tutorial.appdemo.model.Prijava;
-import com.tutorial.appdemo.utils.Lozinka;
+import com.tutorial.appdemo.model.Portir;
+import com.tutorial.appdemo.service.PortirService;
 
 @Controller
 public class LoginController {
+
+	@Autowired
+	PortirService iPortirServis;
 
 	private int tBrojPokusajaUkupno = 3;
 	private int tBrojPokusaja = 0;
@@ -42,14 +47,10 @@ public class LoginController {
 		String tLozinka = pRequest.getParameter("lozinka");
 		logger.info(AppConstants.APP_TAG + " Korisnik: " + tKorisnickoIme + " Lozinka: " + tLozinka);
 
-		tLozinka = Lozinka.kreirajZacinjenuLozinku(tLozinka);
-
-		logger.info(AppConstants.APP_TAG + " Hash Lozinke: " + tLozinka);
-
 		// Pozivamo i iniciramo klasu za prijavu
-		Prijava tPrijava = new Prijava();
+		// Prijava tPrijava = new Prijava();
 
-		boolean tPrijaviSe = tPrijava.prijaviSe(tKorisnickoIme, tLozinka);
+		boolean tPrijaviSe = iPortirServis.prijaviSe(tKorisnickoIme, tLozinka);
 
 		ModelAndView tPrikazEkrana = null;
 
@@ -57,7 +58,15 @@ public class LoginController {
 		if (tPrijaviSe) {
 			// Prijava uspješna - otvori admin panel
 
-			logger.info(AppConstants.APP_TAG + "Prijava uspješna za korisnika: " + tKorisnickoIme + ".");
+			// dohvati portira
+			Portir tPortir = iPortirServis.getPortirByName(tKorisnickoIme);
+
+			logger.info(AppConstants.APP_TAG + "Prijava uspješna za portira: " + tKorisnickoIme + ".");
+
+			pRequest.getSession().setAttribute("portir", tPortir);
+			pRequest.getSession().setAttribute("token", tPortir.getToken());
+
+			// Portir xPortir = (Portir) pRequest.getSession().getAttribute("portir");
 
 			// Reset broja pokušaja
 			tBrojPokusaja = 0;
@@ -93,6 +102,39 @@ public class LoginController {
 
 		}
 		return tPrikazEkrana;
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public ModelAndView odjavaPortira(HttpServletRequest pRequest) {
+		logger.info(AppConstants.APP_TAG + "Inicializiran Logout.");
+
+		HttpSession tSession = pRequest.getSession();
+
+		// provjera session - privremeno
+		// TODO makni ovo
+		if (tSession.isNew()) {
+			System.out.println("New session is jutst created");
+		} else {
+			System.out.println("This is old session");
+		}
+
+		// Idemo po portira u session
+		Portir tPortir = new Portir();
+		tPortir = (Portir) tSession.getAttribute("portir");
+		System.out.println(tPortir.toString());
+
+		if (tPortir.getId() > 0) {
+			// brisanje tokena iz baze
+			tPortir.setToken("");
+			tPortir.setPrijavljen(0);
+			iPortirServis.urediPortira(tPortir, "" + tPortir.getId());
+		}
+
+		ModelAndView tModel = new ModelAndView("login");
+		tModel.addObject("portir", new Portir());
+		tSession.invalidate();
+		return tModel;
+
 	}
 
 }

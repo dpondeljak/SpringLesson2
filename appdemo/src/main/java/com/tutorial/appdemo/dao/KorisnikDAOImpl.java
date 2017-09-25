@@ -27,7 +27,7 @@ public class KorisnikDAOImpl implements KorisnikDAO {
 		List<Korisnik> tKorisnici = tJdbcTemplate.query(DatabaseSql.SQL_GET_ALL_KORISNIKE, new RowMapper<Korisnik>() {
 			// Mapiranje liste korisnika preko RowMapera
 			@Override
-			public Korisnik mapRow(ResultSet rs, int rowNumber) throws SQLException {
+			public Korisnik mapRow(ResultSet rs, int brojReda) throws SQLException {
 				Korisnik tKorisnik = new Korisnik();
 				tKorisnik.setId(rs.getInt("id"));
 				tKorisnik.setIme(rs.getString("ime"));

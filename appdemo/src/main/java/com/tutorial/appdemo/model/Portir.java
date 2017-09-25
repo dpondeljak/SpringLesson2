@@ -11,18 +11,21 @@ public class Portir {
 	private int prijavljen;
 	private String token;
 	private String zadnjiPristup;
+	private int status;
 
 	public Portir() {
 	}
 
 	public Portir(String korisnickoIme, String lozinka) {
+
 		Date tDate = new Date();
-		// this.id = id;
+		this.id = -1;
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
 		this.zakljucan = 0;
-		this.prijavljen = 1;
+		this.prijavljen = 0;
 		this.zadnjiPristup = new Timestamp(tDate.getTime()).toString();
+		this.status = 0;
 	}
 
 	public int getId() {
@@ -79,6 +82,21 @@ public class Portir {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "\n Portir [id=" + id + ", korisnickoIme=" + korisnickoIme + ", lozinka=" + lozinka + ", zakljucan="
+				+ zakljucan + ", prijavljen=" + prijavljen + ", token=" + token + ", zadnjiPristup=" + zadnjiPristup
+				+ ", status=" + status + "] ";
 	}
 
 }

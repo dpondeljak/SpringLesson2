@@ -118,7 +118,7 @@ public class Korisnik {
 
 	@Override
 	public String toString() {
-		return "Korisnik [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", korisnickoIme=" + korisnickoIme
+		return "\n Korisnik [id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", korisnickoIme=" + korisnickoIme
 				+ ", lozinka=" + lozinka + ", datumUnosa=" + datumUnosa + ", datumPromjene=" + datumPromjene
 				+ ", status=" + status + ", ipAdresa=" + ipAdresa + "]";
 	}
